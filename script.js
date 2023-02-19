@@ -71,12 +71,17 @@ playPauseSong = document.querySelector(".play-pause"),
 playPauseSongBtn = document.querySelector(".play-pause i"),
 prevSongBtn = document.querySelector("#prev-song"),
 nextSongBtn = document.querySelector("#next-song"),
-progressBar = document.querySelector(".progress-bar")
+progressArea = document.querySelector(".progress-area"),
+progressBar = document.querySelector(".progress-bar"),
+musicList = document.querySelector(".music-list"),
+showMoreBtn = document.querySelector("#more-songs"),
+closemusicList = document.querySelector("#close")
 
-let songIndex = 2;
+let songIndex = Math.floor(Math.random() * allSongs.length);
 
 window.addEventListener("load",()=>{
     loadSong(songIndex);    // loading a song when window is loaded
+    playingNow();
 })
 
 // load song function
@@ -127,10 +132,12 @@ function prevSong(){
 // prev song btn event
 prevSongBtn.addEventListener("click",()=>{
     prevSong();
+    playingNow();
 })
 // next song btn event 
 nextSongBtn.addEventListener("click",()=>{
     nextSong();
+    playingNow();
 })
 
 // updating progress bar according to the current song time
@@ -160,6 +167,78 @@ audioSong.addEventListener("timeupdate",(e)=>{
     if(currentsecond < 10){
         currentsecond = `0${currentsecond}`;
     }
-    songCurrentTime.innerText = `${currentMinute}:${currentsecond}`;
-    
+    songCurrentTime.innerText = `${currentMinute}:${currentsecond}`;   
 })
+// update playing song currrent time to the progress bar width
+
+progressArea.addEventListener("click",(e)=>{
+    let progressWidthVal = progressArea.clientWidth; // getting width of progressbar
+    let clickedOffsetX = e.offsetX  // getting offset x value
+    let musicDuration = audioSong.duration; // getting song duration
+
+    audioSong.currentTime = (clickedOffsetX / progressWidthVal) * musicDuration;
+    playSong();
+})
+
+// work on shuffle button
+const shuffleRepeatBtn = container.querySelector("#repeat-plist");
+
+shuffleRepeatBtn.addEventListener("click",()=>{     // repeating all the song from the beginning
+   songIndex = 0;
+   loadSong(songIndex);
+   playSong();
+   playingNow();
+})
+audioSong.addEventListener("ended",()=>{
+    nextSong();
+    playingNow();
+})
+showMoreBtn.addEventListener("click",()=>{
+    musicList.classList.add("show");
+})
+closemusicList.addEventListener("click",()=>{
+    musicList.classList.remove("show");
+})
+
+const ulTag = container.querySelector(".music-list ul");
+
+// create li element according to the array length
+
+for(let i=0;i < allSongs.length;i++){
+    let liTag = `<li li-index="${i}">
+                    <div class="row">
+                        <span>${allSongs[i].name}</span>        
+                        <p>${allSongs[i].artist}</p>
+                    </div>
+                    <audio class="${allSongs[i].src}" src="songs/${allSongs[i].src}.mp3"></audio>
+                    <span id="${allSongs[i].src}" class="song-duration"></span>
+                </li>`
+    ulTag.insertAdjacentHTML("beforeend",liTag);
+
+}
+
+// lets work on play particular song on click
+const allLiTags = ulTag.querySelectorAll("li");
+
+function playingNow(){
+    for(j=0;j<allLiTags.length;j++){
+        // removing playing class from all other li tag if it exist
+        if(allLiTags[j].classList.contains("playing")){
+            allLiTags[j].classList.remove("playing");
+        }
+        //adding playing class to the li tag which is playing
+        if(allLiTags[j].getAttribute("li-index") == songIndex){
+            allLiTags[j].classList.add("playing");
+        }
+        //adding onclick event on all li tags
+        allLiTags[j].setAttribute("onclick","clicked(this)");
+    }
+}
+
+function clicked(element){
+    let getLiIndex = element.getAttribute("li-index");  // getting li index of particular li tag
+    songIndex = getLiIndex;
+    loadSong(songIndex);
+    playSong();
+    playingNow();
+}

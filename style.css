@@ -183,6 +183,7 @@ body{
 }
 .music-list ul::-webkit-scrollbar{
     width: 0px;
+    scroll-behavior: smooth;
 }
 .music-list ul li{
     list-style: none;
@@ -203,4 +204,8 @@ body{
 }
 ul li .song-duration{
     font-size: 16px;
+}
+ul li.playing{
+    color: var(--violet-color);
+    pointer-events: none;
 }
