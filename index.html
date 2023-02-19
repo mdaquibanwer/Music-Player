@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Icons" />
+    <script src="script.js" defer></script>
+    <title>Music Player</title>
+</head>
+<body>
+    <div class="container">
+        <div class="top-bar">
+            <i class="fa-solid fa-chevron-down"></i>
+            <span>Now Playing</span>
+            <i class="fa-solid fa-ellipsis"></i>
+        </div>
+        <div class="img-area">
+            <img src="covers/1.jpg" alt="">
+        </div>
+        <div class="song-details">
+            <p class="name">In the name of God</p>
+            <p class="artist">Bruno and Riha</p>
+        </div>
+        <div class="progress-area">
+            <div class="progress-bar">
+            </div>
+            <div class="timer">
+                <span class="current">0:21</span>
+                <span class="current">4:53</span>
+            </div>
+        </div>
+        <div class="controls">
+            <i class="fa-solid fa-repeat" id="repeat-plist"></i>
+            <i class="fa-solid fa-backward-step" id="prev-song"></i>
+            <div class="play-pause">
+                <i class="fa-solid fa-play"></i>
+                <!-- <i class="fa-solid fa-pause"></i> -->
+            </div>
+            <i class="fa-solid fa-forward-step" id="next-song"></i>
+            <i class="material-icons" id="more-songs">queue_music</i>
+        </div>
+        <div class="music-list">
+            <div class="header">
+                <div class="row">
+                    <i class="material-icons">queue_music</i>
+                    <span>Music list</span>
+                </div>
+                <i id="close" class="fa-solid fa-xmark"></i>
+            </div>
+            <ul>
+                <li>
+                    <div class="row">
+                        <span>Go Anywhere -- Akon</span>        
+                        <p>Audio Library</p>
+                    </div>
+                    <span class="song-duration">4:53</span>
+                </li>
+                <li>
+                    <div class="row">
+                        <span>Go Anywhere -- Akon</span>        
+                        <p>Audio Library</p>
+                    </div>
+                    <span class="song-duration">4:53</span>
+                </li>
+                <li>
+                    <div class="row">
+                        <span>Go Anywhere -- Akon</span>        
+                        <p>Audio Library</p>
+                    </div>
+                    <span class="song-duration">4:53</span>
+                </li>
+                <li>
+                    <div class="row">
+                        <span>Go Anywhere -- Akon</span>        
+                        <p>Audio Library</p>
+                    </div>
+                    <span class="song-duration">4:53</span>
+                </li>
+                <li>
+                    <div class="row">
+                        <span>Go Anywhere -- Akon</span>        
+                        <p>Audio Library</p>
+                    </div>
+                    <span class="song-duration">4:53</span>
+                </li>
+                <li>
+                    <div class="row">
+                        <span>Go Anywhere -- Akon</span>        
+                        <p>Audio Library</p>
+                    </div>
+                    <span class="song-duration">4:53</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
